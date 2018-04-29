@@ -1,1 +1,18 @@
-String.prototype.getParams = function(...args){ let newUrl = new URL(this); var result = {}; for(var i = 0; i < args.length; i++){ let searchparams = new URLSearchParams(this.search); result[args[i]] = searchparams.get(args[i]); } return result; }
+/**
+ * Usage :
+ * var r = window.location.toString().getParams('param1','param2')
+ * r.param1;
+ * r.param2; 
+ * 
+ * @param [*] args 
+ */
+String.prototype.getParams = function (...args) {
+    var url_string = this;
+    var url = new URL(url_string);
+    
+    var result = {}; 
+    for(var i = 0; i < args.length; i++){
+        result[args[i]] = url.searchParams.get(args[i]);
+    }
+    return result;
+}
